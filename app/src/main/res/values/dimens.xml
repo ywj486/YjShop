@@ -1,0 +1,10 @@
+<resources>
+    <!-- DefaultFragment screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+   <dimen name="buttonCornerSize">2.0dip</dimen>
+   <dimen name="normalButtonHeight">38.0dip</dimen>
+    <dimen name="smallButtonHeight">32.0dip</dimen>
+    <dimen name="largePadding">16.0dip</dimen>
+    <dimen name="bigButtonTextSize">18.0sp</dimen>
+</resources>
