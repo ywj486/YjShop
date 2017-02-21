@@ -6,14 +6,13 @@ package com.bc.ywj.yjshop.entity;
 public class Wares extends BaseBean {
     private String imgUrl;
     private String name;
+    private Float price;
 
-    public Wares(String imgUrl, String name, String price) {
+    public Wares(String imgUrl, String name, Float price) {
         this.imgUrl = imgUrl;
         this.name = name;
         this.price = price;
     }
-
-    private String price;
 
     public String getImgUrl() {
         return imgUrl;
@@ -31,11 +30,11 @@ public class Wares extends BaseBean {
         this.name = name;
     }
 
-    public String getPrice() {
+    public Float getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(Float price) {
         this.price = price;
     }
 

@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             style="@style/bigRedButton"
             android:layout_marginTop="20dp"
-            android:textColor="立即购买"
+            android:text="立即购买"
             android:layout_gravity="right|bottom"
             android:id="@+id/hot_wares_add_btn"/>
     </LinearLayout>

@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 import com.bc.ywj.yjshop.R;
 import com.bc.ywj.yjshop.adapter.HomeCategoryAdapter;
-import com.bc.ywj.yjshop.adapter.decoration.DividerItemDecoration;
+import com.bc.ywj.yjshop.adapter.decoration.CardViewItemDecoration;
 import com.bc.ywj.yjshop.entity.Banner;
 import com.bc.ywj.yjshop.entity.Campaign;
 import com.bc.ywj.yjshop.entity.HomeCampaign;
@@ -181,14 +181,13 @@ public class HomeFragment extends Fragment {
 //        mAdapter = new HomeCategoryAdapter(datas);
 //        mRecyclerView.setAdapter(mAdapter);
 //        mRecyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
-//        mRecyclerView.addItemDecoration(new DividerItemDecoration());
     }
 
     private void initData(List<HomeCampaign> homeCampaigns) {
         mAdapter = new HomeCategoryAdapter(homeCampaigns, getActivity());
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
-        mRecyclerView.addItemDecoration(new DividerItemDecoration());
+        mRecyclerView.addItemDecoration(new CardViewItemDecoration());
 
         mAdapter.setmListener(new HomeCategoryAdapter.OnCampaignClickListener() {
             @Override

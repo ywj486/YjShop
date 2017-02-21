@@ -8,4 +8,7 @@
     <color name="black">#000000</color>
     <color name="category">#dcdcdc</color>
     <color name="firebrick">#b22222</color>
+    <color name="red_btn_color_disable">#7fff5454</color>
+    <color name="red_btn_color_press">#ffd24242</color>
+    <color name="red_btn_color_normal">#ffff5454</color>
 </resources>
