@@ -2,6 +2,7 @@ package com.bc.ywj.yjshop.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,7 +47,9 @@ public class HomeCategoryAdapter extends RecyclerView.Adapter<HomeCategoryAdapte
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
+        
         HomeCampaign homeCampaigns = mDatas.get(position);
+        Log.e("TAG", "位置");
         holder.textTitle.setText(homeCampaigns.getTitle());
         Picasso.with(mContext).load(homeCampaigns.getCpOne()
                 .getImgUrl()).into(holder.imageViewBig);
