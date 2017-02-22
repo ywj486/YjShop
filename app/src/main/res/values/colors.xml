@@ -11,4 +11,5 @@
     <color name="red_btn_color_disable">#7fff5454</color>
     <color name="red_btn_color_press">#ffd24242</color>
     <color name="red_btn_color_normal">#ffff5454</color>
+    <color name="darkgrey">#a9a9a9</color>
 </resources>
