@@ -68,17 +68,23 @@ public class ShopToolbar extends Toolbar {
         }
     }
 
-    private void setRightButtonText(CharSequence rightButtonText) {
+    public void setRightButtonText(CharSequence rightButtonText) {
         if (mRightButton != null) {
             mRightButton.setText(rightButtonText);
         }
         mRightButton.setVisibility(VISIBLE);
     }
-    public void hideRightButtonText(){
+
+    public Button getRightButton() {
+        return this.mRightButton;
+    }
+
+    public void hideRightButtonText() {
         if (mRightButton != null) {
             mRightButton.setVisibility(GONE);
         }
     }
+
     private void initView() {
         if (mView == null) {
             mInflater = LayoutInflater.from(getContext());
@@ -131,14 +137,17 @@ public class ShopToolbar extends Toolbar {
     public void hideTitleView() {
         if (mTextTitle != null) {
             mTextTitle.setVisibility(GONE);
+            mRightButton.setVisibility(GONE);
         }
     }
+
     public void setLeftButtonIcon(Drawable leftIcon) {
         if (mLeftButton != null) {
             mLeftButton.setImageDrawable(leftIcon);
             mLeftButton.setVisibility(VISIBLE);
         }
     }
+
     //设置右边的按钮
     public void setRightButtonIcon(Drawable rightIcon) {
         if (mRightButton != null) {

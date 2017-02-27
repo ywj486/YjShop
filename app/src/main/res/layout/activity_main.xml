@@ -13,6 +13,7 @@
         android:minHeight="?attr/actionBarSize"
         app:rightButtonText="分享"
         app:title="主页"
+        android:id="@+id/toolbar"
         app:isShowSearchView="true"/>
     <FrameLayout
         android:id="@+id/realtabcontent"

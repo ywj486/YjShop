@@ -56,15 +56,16 @@ public abstract class BaseAdapter<T, H extends BaseViewHolder> extends RecyclerV
     }
 
     public void addData(int position, List<T> datas) {
-        if (datas != null && datas.size() > 0) {
+        if (datas != null && datas.size() >=0) {
             mDatas.addAll(datas);
             notifyItemRangeChanged(position, mDatas.size());
         }
     }
 
     public void clearData() {
+        int itemSize=mDatas.size();
         mDatas.clear();
-        notifyItemRangeRemoved(0, mDatas.size());
+        notifyItemRangeRemoved(0, itemSize);
     }
 
     protected abstract void convert(H holder, T item);

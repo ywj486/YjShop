@@ -1,7 +1,9 @@
 package com.bc.ywj.yjshop.activity;
 
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -17,22 +19,30 @@ import com.bc.ywj.yjshop.fragment.HomeFragment;
 import com.bc.ywj.yjshop.fragment.HotFragment;
 import com.bc.ywj.yjshop.fragment.MineFragment;
 import com.bc.ywj.yjshop.wight.FragmentTabHost;
+import com.bc.ywj.yjshop.wight.ShopToolbar;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
-    private FragmentTabHost mTabhost;
+public class MainActivity extends AppCompatActivity {
+    @BindView(R.id.toolbar)
+    ShopToolbar shopToolbar;
+    @BindView(android.R.id.tabhost)
+    FragmentTabHost mTabhost;
     private LayoutInflater mInflater;
     private List<Tab> mTabs = new ArrayList<>(5);
+    public CartFragment cartFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-         setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main);
         //setContentView(R.layout.activity_test);
         mInflater = LayoutInflater.from(this);
+        ButterKnife.bind(this);
         initTab();
     }
 
@@ -49,16 +59,48 @@ public class MainActivity extends AppCompatActivity {
         mTabs.add(tab_cart);
         mTabs.add(tab_mine);
 
-        mTabhost = (FragmentTabHost) findViewById(android.R.id.tabhost);
         mTabhost.setup(this, getSupportFragmentManager(), R.id.realtabcontent);
         for (Tab tab : mTabs) {
             TabHost.TabSpec tabSpec = mTabhost.newTabSpec(getString(tab.getTitle()));
             tabSpec.setIndicator(buildIndicator(tab));
             mTabhost.addTab(tabSpec, tab.getFragment(), null);
         }
+        mTabhost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
+                                             @Override
+                                             public void onTabChanged(String tabId) {
+                                                 if (tabId.equals(getString(R.string.cart))) {
+                                                     refData();
+                                                 } else {
+                                                     shopToolbar.showSearchView();
+                                                     shopToolbar.hideTitleView();
+                                                 }
+                                             }
+                                         }
+
+        );
         mTabhost.getTabWidget().setShowDividers(LinearLayout.SHOW_DIVIDER_NONE);
+
         mTabhost.setCurrentTab(0);
     }
+
+    private void refData() {
+        if (cartFragment == null) {
+            Fragment fragment = getSupportFragmentManager().
+                    findFragmentByTag(getString(R.string.cart));
+
+            if (fragment != null) {
+                cartFragment = (CartFragment) fragment;
+                Log.e("TAG", "cartFragment-------" + cartFragment);
+                cartFragment.refData();
+                cartFragment.changeToolBar();
+            }
+        } else {
+            Log.e("TAG", "666666666666666" + cartFragment);
+            cartFragment.refData();
+            cartFragment.changeToolBar();
+        }
+    }
+
 
     private View buildIndicator(Tab tab) {
         View view = mInflater.inflate(R.layout.tab_indicator, null);
