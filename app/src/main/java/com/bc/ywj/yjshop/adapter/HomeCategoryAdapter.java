@@ -12,6 +12,9 @@ import android.widget.TextView;
 import com.bc.ywj.yjshop.R;
 import com.bc.ywj.yjshop.entity.Campaign;
 import com.bc.ywj.yjshop.entity.HomeCampaign;
+import com.nineoldandroids.animation.Animator;
+import com.nineoldandroids.animation.AnimatorListenerAdapter;
+import com.nineoldandroids.animation.ObjectAnimator;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -47,7 +50,7 @@ public class HomeCategoryAdapter extends RecyclerView.Adapter<HomeCategoryAdapte
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        
+
         HomeCampaign homeCampaigns = mDatas.get(position);
         Log.e("TAG", "位置");
         holder.textTitle.setText(homeCampaigns.getTitle());
@@ -93,20 +96,33 @@ public class HomeCategoryAdapter extends RecyclerView.Adapter<HomeCategoryAdapte
 
         @Override
         public void onClick(View v) {
-            HomeCampaign homeCampaign = mDatas.get(getLayoutPosition());
             if (mListener != null) {
-                switch (v.getId()) {
-                    case R.id.big_iv:
-                        mListener.onClick(v, homeCampaign.getCpOne());
-                        break;
-                    case R.id.small_top_iv:
-                        mListener.onClick(v, homeCampaign.getCpTwo());
-                        break;
-                    case R.id.small_bottom_iv:
-                        mListener.onClick(v, homeCampaign.getCpThree());
-                        break;
-                }
+                anim(v);
             }
+        }
+
+        private void anim(final View v) {
+            ObjectAnimator animator = ObjectAnimator.ofFloat(
+                    v, "rotationX", 0.0f, 360.0f
+            ).setDuration(200);
+            animator.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    HomeCampaign homeCampaign = mDatas.get(getLayoutPosition());
+                    switch (v.getId()) {
+                        case R.id.big_iv:
+                            mListener.onClick(v, homeCampaign.getCpOne());
+                            break;
+                        case R.id.small_top_iv:
+                            mListener.onClick(v, homeCampaign.getCpTwo());
+                            break;
+                        case R.id.small_bottom_iv:
+                            mListener.onClick(v, homeCampaign.getCpThree());
+                            break;
+                    }
+                }
+            });
+            animator.start();
         }
     }
 

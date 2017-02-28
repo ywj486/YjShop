@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         //setContentView(R.layout.activity_test);
         mInflater = LayoutInflater.from(this);
+        //注册
         ButterKnife.bind(this);
         initTab();
     }
@@ -68,6 +69,8 @@ public class MainActivity extends AppCompatActivity {
         mTabhost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
                                              @Override
                                              public void onTabChanged(String tabId) {
+                                                 //如果是购物车  刷新数据，
+                                                 // 否则导航条显示搜索框隐藏头部信息
                                                  if (tabId.equals(getString(R.string.cart))) {
                                                      refData();
                                                  } else {
@@ -79,15 +82,17 @@ public class MainActivity extends AppCompatActivity {
 
         );
         mTabhost.getTabWidget().setShowDividers(LinearLayout.SHOW_DIVIDER_NONE);
-
+        //设置当前页为第一页
         mTabhost.setCurrentTab(0);
     }
 
     private void refData() {
+        //fragment等空 找到购物车
         if (cartFragment == null) {
             Fragment fragment = getSupportFragmentManager().
                     findFragmentByTag(getString(R.string.cart));
 
+            //在购物车页面时 刷新数据，改变toolbar
             if (fragment != null) {
                 cartFragment = (CartFragment) fragment;
                 Log.e("TAG", "cartFragment-------" + cartFragment);
@@ -102,6 +107,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    //构建选项卡
     private View buildIndicator(Tab tab) {
         View view = mInflater.inflate(R.layout.tab_indicator, null);
         ImageView img = (ImageView) view.findViewById(R.id.icon_tab);

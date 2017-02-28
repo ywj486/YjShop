@@ -1,5 +1,6 @@
 package com.bc.ywj.yjshop.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -11,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.bc.ywj.yjshop.R;
+import com.bc.ywj.yjshop.activity.WareListActivity;
 import com.bc.ywj.yjshop.adapter.HomeCategoryAdapter;
 import com.bc.ywj.yjshop.adapter.decoration.CardViewItemDecoration;
 import com.bc.ywj.yjshop.entity.Banner;
@@ -192,8 +194,13 @@ public class HomeFragment extends Fragment {
         mAdapter.setmListener(new HomeCategoryAdapter.OnCampaignClickListener() {
             @Override
             public void onClick(View view, Campaign campaign) {
-                Toast.makeText(getContext(), "title=" + campaign.getTitle(),
-                        Toast.LENGTH_LONG).show();
+//                Toast.makeText(getContext(), "title=" + campaign.getTitle(),
+//                        Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(getActivity(),
+                        WareListActivity.class);
+                intent.putExtra(Contants.COMPAIGN_ID,
+                        campaign.getId());
+                startActivity(intent);
             }
         });
     }
