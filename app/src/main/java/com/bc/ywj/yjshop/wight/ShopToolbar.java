@@ -156,7 +156,21 @@ public class ShopToolbar extends Toolbar {
         }
     }
 
+    //设置右边的按钮
+    public void setRightButtonIcon(int icon) {
+        // 第一种setRightButtonIcon(getResources().getDrawable(icon));
+        //第二种
+        if (mRightButton != null) {
+            mRightButton.setBackgroundResource(icon);
+            mRightButton.setVisibility(VISIBLE);
+        }
+    }
+
     public void setRightButtonClickLinstener(OnClickListener listener) {
         mRightButton.setOnClickListener(listener);
+    }
+
+    public void setLeftButtonClickLinstener(OnClickListener listener) {
+        mLeftButton.setOnClickListener(listener);
     }
 }

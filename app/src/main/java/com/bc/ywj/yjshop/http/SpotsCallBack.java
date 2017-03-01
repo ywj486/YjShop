@@ -26,7 +26,7 @@ public abstract class SpotsCallBack<T> extends BaseCallBack<T> {
     }
 
     //关闭对话框
-    public void dissmissDialog() {
+    public void dismissDialog() {
         if (mDialog != null) {
             mDialog.dismiss();
         }
@@ -43,11 +43,11 @@ public abstract class SpotsCallBack<T> extends BaseCallBack<T> {
     @Override
     public void onFailure(Request request, IOException e) {
         //失败的时候关闭对话框
-        dissmissDialog();
+        dismissDialog();
     }
 
     @Override
     public void onResponse(Response response) {
-        dissmissDialog();
+        dismissDialog();
     }
 }

@@ -1,5 +1,6 @@
 package com.bc.ywj.yjshop.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -12,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.bc.ywj.yjshop.R;
+import com.bc.ywj.yjshop.activity.WareDetailActivity;
 import com.bc.ywj.yjshop.adapter.BaseAdapter;
 import com.bc.ywj.yjshop.adapter.HWAdapter;
 import com.bc.ywj.yjshop.adapter.decoration.DividerItemDecoration;
@@ -54,7 +56,12 @@ public class HotFragment extends Fragment {
                         mAdapter.setmOnItemClickListener(new BaseAdapter.OnItemClickListener() {
                             @Override
                             public void onItemClick(View view, int position) {
-                                Toast.makeText(getContext(), "点击了：" + position, Toast.LENGTH_SHORT).show();
+//                                Toast.makeText(getContext(), "点击了：" + position, Toast.LENGTH_SHORT).show();
+                                Wares wares = mAdapter.getItem(position);
+                                Intent intent = new Intent(getActivity(), WareDetailActivity.class);
+                                intent.putExtra(Contants.WARE, wares);
+                                startActivity(intent);
+
                             }
                         });
                         mRecyclerView.setAdapter(mAdapter);

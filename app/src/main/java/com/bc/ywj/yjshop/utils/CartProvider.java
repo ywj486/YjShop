@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.SparseArray;
 
 import com.bc.ywj.yjshop.entity.ShoppingCart;
+import com.bc.ywj.yjshop.entity.Wares;
 import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
@@ -23,6 +24,11 @@ public class CartProvider {
         datas = new SparseArray<>(10);
         this.mContext = context;
         listToSparse();
+    }
+
+    public void put(Wares wares) {
+        ShoppingCart cart = convertData(wares);
+        put(cart);
     }
 
     public void put(ShoppingCart cart) {
@@ -85,4 +91,15 @@ public class CartProvider {
             }
         }
     }
+
+    private ShoppingCart convertData(Wares item) {
+        ShoppingCart cart = new ShoppingCart();
+        cart.setId(item.getId());
+        cart.setImgUrl(item.getImgUrl());
+        cart.setName(item.getName());
+        cart.setPrice(item.getPrice());
+        cart.setStock(item.getStock());
+        return cart;
+    }
+
 }
